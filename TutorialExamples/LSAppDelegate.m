@@ -7,13 +7,15 @@
 //
 
 #import "LSAppDelegate.h"
-
 #import "LSMasterViewController.h"
+#import "LSExample.h"
 
 @implementation LSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    _exampleArray = [[NSMutableArray alloc] initWithArray:[self createDummy]];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
 
@@ -49,6 +51,28 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (NSArray *)createDummy
+{
+    LSExample *dummyExample = [[LSExample alloc] init];
+	
+    dummyExample.titleOfExample = @"LightTheCandle";
+    dummyExample.descriptionOfExample = @"스위치를 켜고 끄면 이미지 뷰의 촛불 그림과 레이블의 문자가 변하는 기본적인 예제";
+    dummyExample.purposeOfExample = @"Xcode와 InterfaceBuilder의 사용법에 친숙해지고 Obj-C의 기본 문법과 메세징 방식을 익힌다";
+    dummyExample.chapterOfExample = @"Ch3, Ch4, Ch5";
+    dummyExample.classOfExample = @"NSObject, UILabel, UIImageView, UISwitch";
+    NSString *thumbnailPath = [[NSBundle mainBundle] pathForResource:@"LightTheCandle_Thumb" ofType:@"png"];
+    dummyExample.thumbnailPath = thumbnailPath;
+	
+    NSString *iconPath = [[NSBundle mainBundle] pathForResource:@"LightTheCandle_Icon" ofType:@"png"];
+    dummyExample.iconPath = iconPath;
+	
+    NSString *screenShot1 = [[NSBundle mainBundle] pathForResource:@"LightTheCandleScreenShot_1" ofType:@"png"];
+    NSString *screenShot2 = [[NSBundle mainBundle] pathForResource:@"LightTheCandleScreenShot_2" ofType:@"png"];
+    dummyExample.screenShotPathArray = [NSArray arrayWithObjects:screenShot1, screenShot2, nil];
+	
+    return [NSArray arrayWithObject:dummyExample];
 }
 
 @end
