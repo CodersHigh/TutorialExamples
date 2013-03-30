@@ -20,6 +20,7 @@
 		2C18F26E1706810600D4A26C /* LSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C18F26D1706810600D4A26C /* LSDetailViewController.m */; };
 		2C18F2711706810600D4A26C /* LSMasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C18F26F1706810600D4A26C /* LSMasterViewController.xib */; };
 		2C18F2741706810600D4A26C /* LSDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C18F2721706810600D4A26C /* LSDetailViewController.xib */; };
+		2C63DA851707009100ADCF78 /* LSExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C63DA841707009100ADCF78 /* LSExample.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,8 @@
 		2C18F26D1706810600D4A26C /* LSDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSDetailViewController.m; sourceTree = "<group>"; };
 		2C18F2701706810600D4A26C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LSMasterViewController.xib; sourceTree = "<group>"; };
 		2C18F2731706810600D4A26C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LSDetailViewController.xib; sourceTree = "<group>"; };
+		2C63DA831707009100ADCF78 /* LSExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSExample.h; sourceTree = "<group>"; };
+		2C63DA841707009100ADCF78 /* LSExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSExample.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 		2C18F2571706810600D4A26C /* TutorialExamples */ = {
 			isa = PBXGroup;
 			children = (
+				2C63DA831707009100ADCF78 /* LSExample.h */,
+				2C63DA841707009100ADCF78 /* LSExample.m */,
 				2C18F2601706810600D4A26C /* LSAppDelegate.h */,
 				2C18F2611706810600D4A26C /* LSAppDelegate.m */,
 				2C18F2691706810600D4A26C /* LSMasterViewController.h */,
@@ -187,6 +192,7 @@
 				2C18F2621706810600D4A26C /* LSAppDelegate.m in Sources */,
 				2C18F26B1706810600D4A26C /* LSMasterViewController.m in Sources */,
 				2C18F26E1706810600D4A26C /* LSDetailViewController.m in Sources */,
+				2C63DA851707009100ADCF78 /* LSExample.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +323,7 @@
 				2C18F2791706810600D4A26C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
