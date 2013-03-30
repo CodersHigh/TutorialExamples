@@ -93,9 +93,9 @@
     if (!self.detailViewController) {
         self.detailViewController = [[LSDetailViewController alloc] initWithNibName:@"LSDetailViewController" bundle:nil];
     }
-    //NSDate *object = _objects[indexPath.row];
-    //self.detailViewController.detailItem = object;
-    [self.navigationController pushViewController:self.detailViewController animated:YES];
+	LSExample *currExample = [[self appDelegate].exampleArray objectAtIndex:indexPath.row];
+	self.detailViewController.selectedExample = currExample;
+	[self.navigationController pushViewController:self.detailViewController animated:YES];
 }
 
 @end

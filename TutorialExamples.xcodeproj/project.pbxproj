@@ -19,7 +19,6 @@
 		2C18F26B1706810600D4A26C /* LSMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C18F26A1706810600D4A26C /* LSMasterViewController.m */; };
 		2C18F26E1706810600D4A26C /* LSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C18F26D1706810600D4A26C /* LSDetailViewController.m */; };
 		2C18F2711706810600D4A26C /* LSMasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C18F26F1706810600D4A26C /* LSMasterViewController.xib */; };
-		2C18F2741706810600D4A26C /* LSDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C18F2721706810600D4A26C /* LSDetailViewController.xib */; };
 		2C63DA851707009100ADCF78 /* LSExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C63DA841707009100ADCF78 /* LSExample.m */; };
 		2C63DA941707015F00ADCF78 /* detailviewTitle0.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C63DA861707015F00ADCF78 /* detailviewTitle0.png */; };
 		2C63DA951707015F00ADCF78 /* detailviewTitle1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C63DA871707015F00ADCF78 /* detailviewTitle1.png */; };
@@ -56,7 +55,6 @@
 		2C18F26C1706810600D4A26C /* LSDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSDetailViewController.h; sourceTree = "<group>"; };
 		2C18F26D1706810600D4A26C /* LSDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSDetailViewController.m; sourceTree = "<group>"; };
 		2C18F2701706810600D4A26C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LSMasterViewController.xib; sourceTree = "<group>"; };
-		2C18F2731706810600D4A26C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LSDetailViewController.xib; sourceTree = "<group>"; };
 		2C63DA831707009100ADCF78 /* LSExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSExample.h; sourceTree = "<group>"; };
 		2C63DA841707009100ADCF78 /* LSExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSExample.m; sourceTree = "<group>"; };
 		2C63DA861707015F00ADCF78 /* detailviewTitle0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detailviewTitle0.png; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				2C18F26C1706810600D4A26C /* LSDetailViewController.h */,
 				2C18F26D1706810600D4A26C /* LSDetailViewController.m */,
 				2C18F26F1706810600D4A26C /* LSMasterViewController.xib */,
-				2C18F2721706810600D4A26C /* LSDetailViewController.xib */,
 				2C18F2581706810600D4A26C /* Supporting Files */,
 			);
 			path = TutorialExamples;
@@ -219,7 +216,6 @@
 				2C18F2661706810600D4A26C /* Default@2x.png in Resources */,
 				2C18F2681706810600D4A26C /* Default-568h@2x.png in Resources */,
 				2C18F2711706810600D4A26C /* LSMasterViewController.xib in Resources */,
-				2C18F2741706810600D4A26C /* LSDetailViewController.xib in Resources */,
 				2C63DA941707015F00ADCF78 /* detailviewTitle0.png in Resources */,
 				2C63DA951707015F00ADCF78 /* detailviewTitle1.png in Resources */,
 				2C63DA961707015F00ADCF78 /* detailviewTitle2.png in Resources */,
@@ -269,14 +265,6 @@
 				2C18F2701706810600D4A26C /* en */,
 			);
 			name = LSMasterViewController.xib;
-			sourceTree = "<group>";
-		};
-		2C18F2721706810600D4A26C /* LSDetailViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C18F2731706810600D4A26C /* en */,
-			);
-			name = LSDetailViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

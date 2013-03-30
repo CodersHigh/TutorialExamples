@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LSExample.h"
 
 @interface LSDetailViewController : UIViewController
 
-@property (strong, nonatomic) id detailItem;
+@property LSExample *selectedExample;
+//@property (strong, nonatomic) id detailItem;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @end
