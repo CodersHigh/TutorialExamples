@@ -19,5 +19,5 @@
 @property NSString *thumbnailPath;
 @property NSString *iconPath;
 @property NSArray *screenShotPathArray;
-
+@property NSString *urlScheme;
 @end

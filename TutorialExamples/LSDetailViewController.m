@@ -54,7 +54,7 @@
 	_yPosition = _yPosition + ImageViewSize + VMargin;
 	_titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _yPosition, 320, LabelHeight)];
 	_titleLabel.font = [UIFont boldSystemFontOfSize:28];
-	_titleLabel.textAlignment = UITextAlignmentCenter;
+	_titleLabel.textAlignment = NSTextAlignmentCenter;
 	_titleLabel.text = self.selectedExample.titleOfExample;
 	_titleLabel.backgroundColor = [UIColor clearColor];
 	[detailScrollView addSubview:_titleLabel];
@@ -91,6 +91,9 @@
 	
     self.title = self.selectedExample.titleOfExample;
     
+    UIBarButtonItem *goURLBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Go" style:UIBarButtonItemStylePlain target:self action:@selector(goURL:)];
+    self.navigationItem.rightBarButtonItem = goURLBarButton;
+    
 	int exampleId = self.selectedExample.idOfExample;
 	NSString *request = [NSString stringWithFormat:
 						 @"http://lingostar.co.kr/xml/index.php?param=item&no=%d", exampleId];
@@ -124,9 +127,17 @@
 			self.selectedExample.chapterOfExample = objString;
 		} else if ([keyString isEqualToString:@"classes"]) {
 			self.selectedExample.classOfExample = objString;
+		} else if ([keyString isEqualToString:@"urlscheme"]) {
+			self.selectedExample.urlScheme = objString;
 		}
 	}
 	self.selectedExample.screenShotPathArray = screenshots;
+}
+
+- (void)goURL:(id)sender
+{
+    NSString *exampleURLString = [NSString stringWithFormat:@"%@://", self.selectedExample.urlScheme];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:exampleURLString]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -224,7 +235,7 @@
 			break;
 	}
 	cell.textLabel.font = [UIFont systemFontOfSize:16];
-	cell.textLabel.lineBreakMode = UILineBreakModeCharacterWrap;
+	cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
 	cell.textLabel.numberOfLines = NSIntegerMax;
 	cell.textLabel.text = cellString;
     return cell;
