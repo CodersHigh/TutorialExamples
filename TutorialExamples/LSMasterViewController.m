@@ -108,9 +108,14 @@
     LSExample *currExample = [[self appDelegate].exampleArray objectAtIndex:indexPath.row];
 	
     UIImageView *thumbnailImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
-	NSData *imageData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:currExample.thumbnailPath]];
-	UIImage *thumbImage = [UIImage imageWithData:imageData];
-	thumbnailImageView.image = thumbImage;
+	dispatch_queue_t thumbnail_queue = dispatch_queue_create("thumbnail_queue", NULL);
+    dispatch_async( thumbnail_queue , ^{
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:currExample.thumbnailPath]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIImage *thumbImage = [UIImage imageWithData:imageData];
+            thumbnailImageView.image = thumbImage;
+        });
+    });
 	[cell.contentView addSubview:thumbnailImageView];
 	
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 15, 200, 30)];
@@ -125,12 +130,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.detailViewController) {
-        self.detailViewController = [[LSDetailViewController alloc] initWithNibName:@"LSDetailViewController" bundle:nil];
-    }
+    LSDetailViewController *detailViewController = [[LSDetailViewController alloc] initWithNibName:@"LSDetailViewController" bundle:nil];
 	LSExample *currExample = [[self appDelegate].exampleArray objectAtIndex:indexPath.row];
-	self.detailViewController.selectedExample = currExample;
-	[self.navigationController pushViewController:self.detailViewController animated:YES];
+	detailViewController.selectedExample = currExample;
+	[self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 @end

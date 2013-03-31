@@ -12,6 +12,4 @@
 
 @interface LSMasterViewController : UITableViewController
 
-@property (strong, nonatomic) LSDetailViewController *detailViewController;
-
 @end

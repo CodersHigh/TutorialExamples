@@ -12,7 +12,5 @@
 @interface LSDetailViewController : UIViewController
 
 @property LSExample *selectedExample;
-//@property (strong, nonatomic) id detailItem;
 
-//@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @end

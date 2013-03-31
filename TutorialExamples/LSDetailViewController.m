@@ -133,8 +133,14 @@
 {
 	[super viewDidAppear:animated];
     
-	NSData *iconData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.selectedExample.iconPath]];
-	_iconImageView.image = [UIImage imageWithData:iconData];
+    dispatch_queue_t image_queue = dispatch_queue_create("image_queue", NULL);
+
+	dispatch_async(image_queue, ^{
+        NSData *iconData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.selectedExample.iconPath]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _iconImageView.image = [UIImage imageWithData:iconData];
+        });
+    });
     
 	CGSize tableViewSize = _descriptionTableView.contentSize;
 	_descriptionTableView.frame = CGRectMake(0, _yPosition, tableViewSize.width, tableViewSize.height);
@@ -156,9 +162,13 @@
 		rect = CGRectMake(leftOrigin+6, 37+5, PageContentWidth, PageContentHeight);
 		UIImageView *screenShotContentPage = [[UIImageView alloc] initWithFrame:rect];
 		NSString *screenShotImagePath = [screenShotArray objectAtIndex:i];
-		NSData *screenshotData = [NSData dataWithContentsOfURL:[NSURL URLWithString:screenShotImagePath]];
-		UIImage *screenshotImage = [UIImage imageWithData:screenshotData];
-		screenShotContentPage.image = screenshotImage;
+		dispatch_async(image_queue, ^{
+            NSData *screenshotData = [NSData dataWithContentsOfURL:[NSURL URLWithString:screenShotImagePath]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIImage *screenshotImage = [UIImage imageWithData:screenshotData];
+                screenShotContentPage.image = screenshotImage;
+            });
+        });
 		[_screenShotPageView addSubview:screenShotContentPage];
 	}
 	_screenShotPageView.contentSize = CGSizeMake(leftOrigin + PageWidth+PageSpace, PageHeight);
