@@ -47,6 +47,7 @@
 		2C63DB7617073B3000ADCF78 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C63DB6517073B3000ADCF78 /* CXMLNode_PrivateExtensions.m */; };
 		2C63DB7717073B3000ADCF78 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C63DB6717073B3000ADCF78 /* CXMLNode_XPathExtensions.m */; };
 		2C63DB7817073B3000ADCF78 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C63DB6A17073B3000ADCF78 /* CTidy.m */; };
+		2C63DB7B1707C32A00ADCF78 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C63DB7A1707C32A00ADCF78 /* AsyncImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,8 @@
 		2C63DB6917073B3000ADCF78 /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTidy.h; sourceTree = "<group>"; };
 		2C63DB6A17073B3000ADCF78 /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
 		2C63DB6B17073B3000ADCF78 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
+		2C63DB791707C32A00ADCF78 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
+		2C63DB7A1707C32A00ADCF78 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +163,8 @@
 			children = (
 				2C63DA831707009100ADCF78 /* LSExample.h */,
 				2C63DA841707009100ADCF78 /* LSExample.m */,
+				2C63DB791707C32A00ADCF78 /* AsyncImageView.h */,
+				2C63DB7A1707C32A00ADCF78 /* AsyncImageView.m */,
 				2C18F2601706810600D4A26C /* LSAppDelegate.h */,
 				2C18F2611706810600D4A26C /* LSAppDelegate.m */,
 				2C18F2691706810600D4A26C /* LSMasterViewController.h */,
@@ -349,6 +354,7 @@
 				2C63DB7617073B3000ADCF78 /* CXMLNode_PrivateExtensions.m in Sources */,
 				2C63DB7717073B3000ADCF78 /* CXMLNode_XPathExtensions.m in Sources */,
 				2C63DB7817073B3000ADCF78 /* CTidy.m in Sources */,
+				2C63DB7B1707C32A00ADCF78 /* AsyncImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

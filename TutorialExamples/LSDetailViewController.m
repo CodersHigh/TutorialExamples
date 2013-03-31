@@ -8,6 +8,7 @@
 
 #import "LSDetailViewController.h"
 #import "TouchXML.h"
+#import "AsyncImageView.h"
 
 #define VMargin 20
 #define VSmallMargin 5
@@ -26,7 +27,7 @@
 
 @interface LSDetailViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate> {
     UILabel *_titleLabel;
-	UIImageView *_iconImageView;
+	AsyncImageView *_iconImageView;
 	UITableView *_descriptionTableView;
 	UIImageView *_screenShotBG;
 	UIScrollView *_screenShotPageView;
@@ -48,7 +49,7 @@
 	detailScrollView.backgroundColor = bkgColor;
 	
 	_yPosition = VMargin;
-	_iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake((320-ImageViewSize)/2, _yPosition, ImageViewSize, ImageViewSize)];
+	_iconImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake((320-ImageViewSize)/2, _yPosition, ImageViewSize, ImageViewSize)];
 	[detailScrollView addSubview:_iconImageView];
 	
 	_yPosition = _yPosition + ImageViewSize + VMargin;
@@ -133,8 +134,8 @@
 {
 	[super viewDidAppear:animated];
     
-	NSData *iconData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.selectedExample.iconPath]];
-	_iconImageView.image = [UIImage imageWithData:iconData];
+	[_iconImageView loadImageFromURL:[NSURL URLWithString:self.selectedExample.iconPath]];
+    
     
 	CGSize tableViewSize = _descriptionTableView.contentSize;
 	_descriptionTableView.frame = CGRectMake(0, _yPosition, tableViewSize.width, tableViewSize.height);
@@ -154,11 +155,9 @@
 		[_screenShotPageView addSubview:screenShotContentFrame];
 		
 		rect = CGRectMake(leftOrigin+6, 37+5, PageContentWidth, PageContentHeight);
-		UIImageView *screenShotContentPage = [[UIImageView alloc] initWithFrame:rect];
+		AsyncImageView *screenShotContentPage = [[AsyncImageView alloc] initWithFrame:rect];
 		NSString *screenShotImagePath = [screenShotArray objectAtIndex:i];
-		NSData *screenshotData = [NSData dataWithContentsOfURL:[NSURL URLWithString:screenShotImagePath]];
-		UIImage *screenshotImage = [UIImage imageWithData:screenshotData];
-		screenShotContentPage.image = screenshotImage;
+		[screenShotContentPage loadImageFromURL:[NSURL URLWithString:screenShotImagePath]];
 		[_screenShotPageView addSubview:screenShotContentPage];
 	}
 	_screenShotPageView.contentSize = CGSizeMake(leftOrigin + PageWidth+PageSpace, PageHeight);

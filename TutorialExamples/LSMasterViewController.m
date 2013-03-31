@@ -11,6 +11,7 @@
 #import "LSAppDelegate.h"
 #import "LSExample.h"
 #import "TouchXML.h"
+#import "AsyncImageView.h"
 
 @interface LSMasterViewController ()
 @end
@@ -107,10 +108,8 @@
     
     LSExample *currExample = [[self appDelegate].exampleArray objectAtIndex:indexPath.row];
 	
-    UIImageView *thumbnailImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
-	NSData *imageData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:currExample.thumbnailPath]];
-	UIImage *thumbImage = [UIImage imageWithData:imageData];
-	thumbnailImageView.image = thumbImage;
+    AsyncImageView *thumbnailImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
+	[thumbnailImageView loadImageFromURL:[NSURL URLWithString:currExample.thumbnailPath]];
 	[cell.contentView addSubview:thumbnailImageView];
 	
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 15, 200, 30)];
@@ -125,12 +124,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.detailViewController) {
-        self.detailViewController = [[LSDetailViewController alloc] initWithNibName:@"LSDetailViewController" bundle:nil];
-    }
+    LSDetailViewController *detailViewController = [[LSDetailViewController alloc] initWithNibName:@"LSDetailViewController" bundle:nil];
 	LSExample *currExample = [[self appDelegate].exampleArray objectAtIndex:indexPath.row];
-	self.detailViewController.selectedExample = currExample;
-	[self.navigationController pushViewController:self.detailViewController animated:YES];
+	detailViewController.selectedExample = currExample;
+	[self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 @end
