@@ -7,7 +7,6 @@
 //
 
 #import "LSDetailViewController.h"
-#import "TouchXML.h"
 
 #define VMargin 20
 #define VSmallMargin 5
@@ -85,55 +84,11 @@
 	self.view = detailScrollView;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-	
-    self.title = self.selectedExample.titleOfExample;
-    
-	int exampleId = self.selectedExample.idOfExample;
-	NSString *request = [NSString stringWithFormat:
-						 @"http://lingostar.co.kr/xml/index.php?param=item&no=%d", exampleId];
-	NSURL *xmlURL = [NSURL URLWithString:request];
-	NSString *xmlString = [NSString stringWithContentsOfURL:xmlURL
-												   encoding:NSUTF8StringEncoding
-													  error:nil];
-	NSString *tidyXMLString = [xmlString stringByTrimmingCharactersInSet:
-							   [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	CXMLDocument *xmlDoc = [[CXMLDocument alloc] initWithXMLString:tidyXMLString
-															options:CXMLDocumentTidyXML
-															  error:nil];
-	NSArray *itemArray = [xmlDoc nodesForXPath:@"//item" error:nil];
-	CXMLElement *currElement = [itemArray lastObject];
-	NSMutableArray *screenshots = [[NSMutableArray alloc] initWithCapacity:10];
-	
-	int counter;
-	for (counter = 0; counter < [currElement childCount]; counter++) {
-		NSString *objString = [[[currElement childAtIndex:counter] stringValue] copy];
-		NSString *keyString = [[[currElement childAtIndex:counter] name] copy];
-		
-		if ([keyString isEqualToString:@"icon"]) {
-			self.selectedExample.iconPath = objString;
-		} else if ([keyString isEqualToString:@"screenshot"]) {
-			[screenshots addObject:objString];
-		} else if ([keyString isEqualToString:@"desc"]) {
-			self.selectedExample.descriptionOfExample = objString;
-		} else if ([keyString isEqualToString:@"purpose"]) {
-			self.selectedExample.purposeOfExample = objString;
-		} else if ([keyString isEqualToString:@"chapter"]) {
-			self.selectedExample.chapterOfExample = objString;
-		} else if ([keyString isEqualToString:@"classes"]) {
-			self.selectedExample.classOfExample = objString;
-		}
-	}
-	self.selectedExample.screenShotPathArray = screenshots;
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
     
-	NSData *iconData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.selectedExample.iconPath]];
+	NSData *iconData = [NSData dataWithContentsOfURL:[NSURL	fileURLWithPath:self.selectedExample.iconPath]];
 	_iconImageView.image = [UIImage imageWithData:iconData];
     
 	CGSize tableViewSize = _descriptionTableView.contentSize;
@@ -147,7 +102,7 @@
 	NSArray *screenShotArray = self.selectedExample.screenShotPathArray;
 	int i, leftOrigin;
 	for (i=0; i<[screenShotArray count]; i++) {
-		leftOrigin = i*(PageWidth+PageSpace*2) + PageSpace;
+		leftOrigin = i*(PageWidth+PageSpace) + PageSpace;
 		CGRect rect = CGRectMake(leftOrigin, 37, PageWidth, PageHeight);
 		UIImageView *screenShotContentFrame = [[UIImageView alloc] initWithFrame:rect];
 		screenShotContentFrame.image = [UIImage imageNamed:@"scrollviewFrame"];
@@ -156,7 +111,7 @@
 		rect = CGRectMake(leftOrigin+6, 37+5, PageContentWidth, PageContentHeight);
 		UIImageView *screenShotContentPage = [[UIImageView alloc] initWithFrame:rect];
 		NSString *screenShotImagePath = [screenShotArray objectAtIndex:i];
-		NSData *screenshotData = [NSData dataWithContentsOfURL:[NSURL URLWithString:screenShotImagePath]];
+		NSData *screenshotData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:screenShotImagePath]];
 		UIImage *screenshotImage = [UIImage imageWithData:screenshotData];
 		screenShotContentPage.image = screenshotImage;
 		[_screenShotPageView addSubview:screenShotContentPage];
@@ -256,7 +211,7 @@
 	CGSize boundingSize = CGSizeMake(280, CGFLOAT_MAX);
 	CGSize requiredSize = [cellString sizeWithFont:[UIFont systemFontOfSize:16]
                                  constrainedToSize:boundingSize
-                                     lineBreakMode:NSLineBreakByWordWrapping];
+                                     lineBreakMode:UILineBreakModeWordWrap];
 	CGFloat requiredHeight = requiredSize.height;
 	
 	return requiredHeight + 15;

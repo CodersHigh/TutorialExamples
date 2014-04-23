@@ -10,7 +10,6 @@
 #import "LSDetailViewController.h"
 #import "LSAppDelegate.h"
 #import "LSExample.h"
-#import "TouchXML.h"
 
 @interface LSMasterViewController ()
 @end
@@ -32,40 +31,6 @@
 	self.tableView.rowHeight = 63;
     self.navigationController.navigationBar.tintColor = [UIColor colorWithHue:0.2 saturation:0.8 brightness:0.2 alpha:1.0];
 }
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    NSURL *xmlURL = [NSURL URLWithString:@"http://lingostar.co.kr/xml/index.php?param=list"];
-    NSString *xmlString = [NSString stringWithContentsOfURL:xmlURL
-                                                   encoding:NSUTF8StringEncoding
-                                                      error:nil];
-    NSString *tidyXMLString = [xmlString stringByTrimmingCharactersInSet:
-                               [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    CXMLDocument *xmlDoc = [[CXMLDocument alloc] 	initWithXMLString:tidyXMLString
-                                                             options:CXMLDocumentTidyXML error:nil];
-	
-	NSArray *itemArray = [xmlDoc nodesForXPath:@"//item" error:nil];
-	CXMLElement *aElement;
-	
-	for (aElement in itemArray) {
-		LSExample *newExample = [[LSExample alloc] init];
-		int counter;
-		for (counter = 0; counter < [aElement childCount]; counter++) {
-			NSString *objString = [[[aElement childAtIndex:counter] stringValue] copy];
-			NSString *keyString = [[[aElement childAtIndex:counter] name] copy];
-			if ([keyString isEqualToString:@"no"]){
-				newExample.idOfExample = [objString intValue];
-			} else if ([keyString isEqualToString:@"title"]) {
-				newExample.titleOfExample = objString;
-			} else if ([keyString isEqualToString:@"thumb"]) {
-				newExample.thumbnailPath = objString;
-			}
-		}
-		[[self appDelegate].exampleArray addObject:newExample];
-	}
-}
-
 
 - (void)didReceiveMemoryWarning
 {
