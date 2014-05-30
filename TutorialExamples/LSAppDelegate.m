@@ -14,7 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    _exampleArray = [[NSMutableArray alloc] initWithArray:[self createDummy]];
+    _exampleArray = [[NSMutableArray alloc] initWithCapacity:10];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
